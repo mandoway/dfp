@@ -1,0 +1,4 @@
+line,level,rule
+4,warning,DL3006
+5,error,DL4000
+7,warning,DL3032

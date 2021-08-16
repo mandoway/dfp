@@ -1,0 +1,5 @@
+line,level,rule
+3,info,SC2086
+5,error,DL3020
+6,error,DL3020
+7,error,DL3020

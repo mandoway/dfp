@@ -1,0 +1,4 @@
+line,level,rule
+2,error,DL4000
+4,info,SC2086
+4,warning,DL3003

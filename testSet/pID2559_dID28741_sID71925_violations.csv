@@ -1,0 +1,4 @@
+line,level,rule
+4,error,DL3020
+5,error,DL3020
+12,warning,DL3025
