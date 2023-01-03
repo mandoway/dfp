@@ -1,0 +1,47 @@
+resultsWithAllPatches.pkl:
+    20.07.2021 20:23
+    limit=300
+    blacklist=# Package Managers
+    "apt-get",
+    "pip",
+    "yum",
+    "npm",
+    "apk",
+    "conda",
+    # Keywords
+    "update",
+    "install",
+    # Other Executables
+    "curl",
+    "wget",
+    "git",
+    "rm",
+    # Docker instructions
+    "RUN"
+
+    python=3.9.1
+    all patches enabled
+
+resultsWithOnlyGeneratedPatches.pkl:
+    28.07.2021 17:13
+    limit=300
+    blacklist=# Package Managers
+    "apt-get",
+    "pip",
+    "yum",
+    "npm",
+    "apk",
+    "conda",
+    # Keywords
+    "update",
+    "install",
+    # Other Executables
+    "curl",
+    "wget",
+    "git",
+    "rm",
+    # Docker instructions
+    "RUN"
+
+    python=3.9.1
+    only generated patches enabled, custom & dependency disabled

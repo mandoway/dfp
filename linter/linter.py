@@ -1,4 +1,5 @@
 import re
+import sys
 import tempfile
 import msr18model
 import subprocess
@@ -41,7 +42,9 @@ class Linter:
             self.dockerfile.snapshots[index].violations = violations
 
 
-def lintString(source: str, hadolint_path: str = "hadolint.exe") -> list[msr18model.Violation]:
+def lintString(source: str) -> list[msr18model.Violation]:
+    hadolint_path = getDefaultHadolintPath()
+
     tmp = tempfile.NamedTemporaryFile(dir="", delete=False)
     tmp.write(source.encode())
     tmp.flush()
@@ -57,13 +60,22 @@ def lintString(source: str, hadolint_path: str = "hadolint.exe") -> list[msr18mo
     return list(map(mapLineToViolation, lines))
 
 
-def lintFile(filename: str, hadolint_path: str = "hadolint.exe") -> list[msr18model.Violation]:
+def lintFile(filename: str) -> list[msr18model.Violation]:
+    hadolint_path = getDefaultHadolintPath()
+
     proc = subprocess.Popen([hadolint_path, "--no-color", filename], stdout=subprocess.PIPE, text=True)
     out = proc.communicate()[0]
 
     lines = out.split("\n")
     lines = filter(lambda x: x.count(" ") >= 2, lines)
     return list(map(mapLineToViolation, lines))
+
+
+def getDefaultHadolintPath() -> str:
+    if sys.platform == "linux":
+        return "hadolint"
+    else:
+        return "hadolint.exe"
 
 
 def mapLineToViolation(line: str) -> msr18model.Violation:

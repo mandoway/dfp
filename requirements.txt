@@ -7,3 +7,4 @@ requests==2.25.1
 matplotlib==3.4.2
 latextable==0.1.1
 texttable==1.6.4
+psycopg2-binary==2.8.6

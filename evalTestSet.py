@@ -17,7 +17,7 @@ def evaluateTestSet():
 
     all_stats = []
     for dockerfile, violationFile in tqdm(testPairs[:LIMIT]):
-        stats = patch(str(dockerfile), str(violationFile), "hadolint.exe", quiet=True)
+        stats = patch(str(dockerfile), str(violationFile), quiet=True)
 
         all_stats.append(stats)
 

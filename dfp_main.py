@@ -71,21 +71,20 @@ class VerifiedPatch:
 @click.command()
 @click.argument("dockerfile", type=click.Path(exists=True))
 @click.option("-l", "--linter-results", "violations_file", type=click.Path(exists=True))
-@click.option("-hp", "--hadolint-path", "hadolint_path", type=click.Path(exists=True), default="hadolint.exe")
 @click.option("-q", "--quiet", is_flag=True)
 @click.option("-pl", "--patch-limit", type=click.INT)
-def patch_command(dockerfile: str, violations_file: str, hadolint_path: str, quiet: bool, patch_limit: int):
-    patch(dockerfile, violations_file, hadolint_path, quiet, patch_limit)
+def patch_command(dockerfile: str, violations_file: str, quiet: bool, patch_limit: int):
+    patch(dockerfile, violations_file, quiet, patch_limit)
 
 
-def patch(dockerfile: str, violations_file: str, hadolint_path: str, quiet: bool = not VERBOSE,
+def patch(dockerfile: str, violations_file: str, quiet: bool = not VERBOSE,
           limit: int = PATCH_LIMIT, blacklist: set[str] = None):
     if blacklist is None:
         blacklist = DEFAULT_PATCH_BLACKLIST
     global VERBOSE
     VERBOSE = not quiet
 
-    violations = getViolations(dockerfile, violations_file, hadolint_path)
+    violations = getViolations(dockerfile, violations_file)
 
     _print(f"Number of violations: {len(violations)}")
 
@@ -114,7 +113,7 @@ def patch(dockerfile: str, violations_file: str, hadolint_path: str, quiet: bool
         for pos, ranked_patch in iterator:
             patched_line = ranked_patch.apply(affected_line)
 
-            if verifyFix(docker_lines, patched_line, violation, violations, hadolint_path):
+            if verifyFix(docker_lines, patched_line, violation, violations):
                 # Violation was fixed!
                 fixed = True
                 stats.fixed += 1
@@ -137,8 +136,7 @@ def patch(dockerfile: str, violations_file: str, hadolint_path: str, quiet: bool
     return stats
 
 
-def verifyFix(docker_lines: list[str], patched_line: str, violation: Violation, old_violations: list[Violation],
-              hadolint_path: str) -> bool:
+def verifyFix(docker_lines: list[str], patched_line: str, violation: Violation, old_violations: list[Violation]) -> bool:
     """
     Verify if a patch did actually remove the violation.
     It only removes the violation when it is no longer present, no new violation was introduced and the file contains no
@@ -148,7 +146,6 @@ def verifyFix(docker_lines: list[str], patched_line: str, violation: Violation, 
     :param patched_line: line where a patch was applied
     :param violation: the violation which is possibly removed
     :param old_violations: all violations before the patch
-    :param hadolint_path: path of linter executable
     :return: whether the patch was successful or not
     """
 
@@ -156,7 +153,7 @@ def verifyFix(docker_lines: list[str], patched_line: str, violation: Violation, 
     new_docker_lines[int(violation.line) - 1] = patched_line
 
     dockerfile = os.linesep.join(new_docker_lines)
-    new_violations = linter.lintString(dockerfile, hadolint_path)
+    new_violations = linter.lintString(dockerfile)
     is_violation_gone = violation not in new_violations and len(new_violations) < len(old_violations)
     has_no_syntax_error = len(list(filter(lambda it: it.rule == "unexpected", new_violations))) == 0
 

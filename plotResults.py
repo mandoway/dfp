@@ -1,5 +1,6 @@
 import os
 import pickle
+import sys
 
 import latextable as latextable
 import matplotlib.pyplot as plt
@@ -136,9 +137,13 @@ def plotRulesVsTotal(rules: dict[str, int], total: dict[str, int]):
     print()
 
 
-if __name__ == "__main__":
-    results_file = "evalStats_20072021_2023.pkl"
-    # results_file = "evalStats_28072021_1713.pkl"
+def main():
+    if len(sys.argv) < 2:
+        print("Please provide a result file, e.g. results.pkl")
+        return
+
+    results_file = sys.argv[1]
+
     with open(results_file, "rb") as f:
         results: list[PatchStats] = pickle.load(f)
 
@@ -173,3 +178,7 @@ if __name__ == "__main__":
     plotTimes(times, times_per_violation)
     plotRulesVsTotal(rule_dist, testSet)
     tablePositions(position_dist)
+
+
+if __name__ == "__main__":
+    main()

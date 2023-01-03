@@ -1,0 +1,468 @@
+
+Line 11 (DL3005): RUN apt-get upgrade -y   --->   RUN apt-get curl -q
+
+Line 33 (DL3008): RUN apt-get install -y sudo   --->   RUN apt-get install -y sudo update &&
+Line 33 (DL3015): RUN apt-get install -y sudo   --->   RUN apt-get install -y sudo update &&
+Line 49 (DL3020): ADD docker-entrypoint.sh /usr/local/bin   --->   COPY docker-entrypoint.sh /usr/local/bin
+
+Line 7 (DL3007): FROM ubuntu:latest   --->   FROM ubuntu:trusty
+Line 18 (DL3008): RUN apt-get -y install supervisor   --->   RUN apt-get -yqq install -ysupervisor
+Line 18 (DL3015): RUN apt-get -y install supervisor   --->   RUN apt-get -yqq install -ysupervisor
+Line 19 (DL3008): RUN apt-get -y install mysql-server   --->   RUN apt-get &&\\ install mysql-client
+Line 19 (DL3015): RUN apt-get -y install mysql-server   --->   RUN apt-get &&\\ install mysql-client
+Line 20 (DL3008): RUN apt-get -y install apache2   --->   RUN apt-get -yq install --fix-missing
+Line 20 (DL3015): RUN apt-get -y install apache2   --->   RUN apt-get -yq install --fix-missing
+Line 21 (DL3008): RUN apt-get -y install php5 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur   --->   RUN apt-get clean&& install php5 libapache2-mod-php5 php5-mysql update php-pear php-apc update curl lynx-cur
+Line 21 (DL3015): RUN apt-get -y install php5 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur   --->   RUN apt-get clean&& install php5 libapache2-mod-php5 php5-mysql update php-pear php-apc update curl lynx-cur
+Line 24 (DL3020): ADD apache2-start.sh /apache2-start.sh   --->   COPY apache2-start.sh /apache2-start.sh
+Line 27 (DL3020): ADD mysql-start.sh /mysql-start.sh   --->   COPY mysql-start.sh /mysql-start.sh
+Line 28 (DL3020): ADD run.sh /run.sh   --->   COPY run.sh /run.sh
+Line 34 (DL3020): ADD my.cnf /etc/mysql/conf.d/my.cnf   --->   COPY my.cnf /etc/mysql/conf.d/my.cnf
+Line 35 (DL3020): ADD supervisord-lamp.conf /etc/supervisor/conf.d/supervisord-lamp.conf   --->   COPY supervisord-lamp.conf /etc/supervisor/conf.d/supervisord-lamp.conf
+Line 49 (DL3020): ADD create_database.sh /create_database.sh   --->   COPY create_database.sh /create_database.sh
+Line 50 (DL3020): ADD mysql_user.sh /mysql_user.sh   --->   COPY mysql_user.sh /mysql_user.sh
+
+Line 5 (DL3020): ADD example-webapp.war $JETTY_BASE/webapps/example-webapp.war   --->   COPY example-webapp.war $JETTY_BASE/webapps/example-webapp.war
+Line 6 (DL3020): ADD jetty-notifier.jar $JETTY_BASE/lib/ext/jetty-notifier.jar   --->   COPY jetty-notifier.jar $JETTY_BASE/lib/ext/jetty-notifier.jar
+Line 7 (DL3020): ADD .send-notification /root/.send-notification   --->   COPY .send-notification /root/.send-notification
+
+Line 5 (DL3008): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1
+Line 5 (DL3009): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1
+Line 5 (DL3015): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1
+Line 9 (DL3013): RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git   --->   RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git .
+Line 9 (DL3042): RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git   --->   RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git .
+Line 11 (SC2028): RUN echo "[global]\ndevice=gpu\nfloatX=float32\n[nvcc]\nfastmath=True" > /root/.theanorc   --->   RUN htpasswd "[global]\ndevice=gpu\nfloatX=float32\n[nvcc]\nfastmath=True" > /root/.theanorc
+
+Line 73 (DL3008): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 \
+Line 73 (DL3015): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 \
+Line 80 (DL3003): RUN mkdir /temp_pip && \   --->   RUN echo /temp_pip rm \
+Line 80 (DL4001): RUN mkdir /temp_pip && \   --->   RUN echo /temp_pip rm \
+Line 107 (DL3025): CMD cp -rT /src/ /app/   --->   RUN cp -rT /src/ /app/
+Line 108 (DL4003): CMD detox -e py27 py34 py35 docs check   --->   RUN detox -e py27 py34 py35 docs check
+Line 108 (DL3025): CMD detox -e py27 py34 py35 docs check   --->   RUN detox -e py27 py34 py35 docs check
+Line 109 (DL4003): CMD tox -e coveralls codecov report   --->   RUN tox -e coveralls codecov report
+Line 109 (DL3025): CMD tox -e coveralls codecov report   --->   RUN tox -e coveralls codecov report
+
+Line 1 (DL3006): FROM base/archlinux   --->   FROM base/archlinux:2014.07.03
+Line 5 (DL3010): COPY php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz   --->   ADD php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz
+Line 9 (DL3020): ADD php.ini /etc/php/php.ini   --->   COPY php.ini /etc/php/php.ini
+
+Line 16 (DL3006): FROM centos   --->   FROM centos:7.0
+Line 19 (DL3032): RUN yum install -y unzip   --->   RUN yum install -y unzip clean all
+Line 19 (DL3033): RUN yum install -y unzip   --->   RUN yum install -y unzip clean all
+Line 23 (DL3025): CMD /opt/bigpetstore-transaction-queue-1.0/bin/bigpetstore-transaction-queue   --->   RUN /opt/bigpetstore-transaction-queue-1.0/bin/bigpetstore-transaction-queue
+
+
+Line 1 (DL3006): FROM google/nodejs-runtime   --->   FROM node:5.0
+
+
+Line 1 (DL3006): FROM base/archlinux   --->   FROM base/archlinux:2014.07.03
+Line 5 (DL3010): COPY php/php-5.4.0-1-x86_64.pkg.tar.xz /tmp/php-5.4.0-1-x86_64.pkg.tar.xz   --->   ADD php/php-5.4.0-1-x86_64.pkg.tar.xz /tmp/php-5.4.0-1-x86_64.pkg.tar.xz
+Line 18 (DL3020): ADD php.ini /etc/php/php.ini   --->   COPY php.ini /etc/php/php.ini
+
+
+Line 1 (DL3007): FROM node:latest   --->   FROM node:alpine
+Line 4 (DL3020): ADD ./api /api   --->   COPY ./api /api
+
+Line 4 (DL3004): RUN sudo apt-get update -y   --->   RUN sudo apt-get update -y -qq
+Line 5 (DL3004): RUN sudo apt-get install -y git wget   --->   RUN sudo apt-get install -y git wget make
+
+Line 9 (DL3013): RUN pip install -y ipython jupyter h5py pyyaml   --->   RUN pip install -y ipython jupyter h5py pyyaml .
+Line 9 (DL3042): RUN pip install -y ipython jupyter h5py pyyaml   --->   RUN pip install -y ipython jupyter h5py pyyaml .
+Line 12 (DL3003): RUN cd /root && git clone https://github.com/fchollet/keras.git && cd keras && \   --->   RUN git /tmp rm git clone https://github.com/fchollet/keras.git rm git keras rm \
+
+Line 22 (DL3020): ADD ${VALIDATOR_NU_URL} /tmp   --->   COPY ${VALIDATOR_NU_URL} /tmp
+
+Line 11 (DL3005): RUN apt-get update && apt-get upgrade -y   --->   RUN apt-get update cd apt-get update -yq
+Line 11 (DL3009): RUN apt-get update && apt-get upgrade -y   --->   RUN apt-get update cd apt-get update -yq
+Line 33 (DL3003): RUN cd $GOROOT && curl -s https://storage.googleapis.com/gobuilder/go-snap.tar.gz | tar x --no-same-owner -zv   --->   RUN mkdir $GOROOT && curl -s https://storage.googleapis.com/gobuilder/go-snap.tar.gz | tar x --no-same-owner -zv
+Line 33 (DL4006): RUN cd $GOROOT && curl -s https://storage.googleapis.com/gobuilder/go-snap.tar.gz | tar x --no-same-owner -zv   --->   RUN mkdir $GOROOT && curl -s https://storage.googleapis.com/gobuilder/go-snap.tar.gz | tar x --no-same-owner -zv
+Line 37 (DL3003): RUN cd $GO_TOOLS $ && curl -s https://storage.googleapis.com/gobuilder/go.tools-snap.tar.gz | tar x --no-same-owner -zv   --->   RUN mkdir $GO_TOOLS $ && curl -s https://storage.googleapis.com/gobuilder/go.tools-snap.tar.gz | tar x --no-same-owner -zv
+Line 37 (DL4006): RUN cd $GO_TOOLS $ && curl -s https://storage.googleapis.com/gobuilder/go.tools-snap.tar.gz | tar x --no-same-owner -zv   --->   RUN mkdir $GO_TOOLS $ && curl -s https://storage.googleapis.com/gobuilder/go.tools-snap.tar.gz | tar x --no-same-owner -zv
+Line 39 (DL3003): RUN cd $GOROOT && hg pull && hg update -C b8ff0ec2a724   --->   RUN git $GOROOT rm hg pull rm hg update -C b8ff0ec2a724
+Line 40 (DL3003): RUN cd $GOROOT/src && ./make.bash   --->   RUN git $GOROOT/src rm ./make.bash
+Line 43 (DL3003): RUN cd $GO_TOOLS && hg pull && hg update -C f9e37a924785   --->   RUN git $GO_TOOLS rm hg pull rm hg update -C f9e37a924785
+
+Line 1 (DL3006): FROM ubuntu   --->   FROM ubuntu:17.1
+Line 10 (DL3008): RUN apt-get -y update && apt-get install -y subversion apache2 libapache2-mod-svn libapache2-svn libsvn-dev   --->   RUN apt-get # update cd apt-get install # supervidor --fix-missing lib--fix-missing-mod-svn lib--fix-missing-svn libsvn-dev
+Line 10 (DL3009): RUN apt-get -y update && apt-get install -y subversion apache2 libapache2-mod-svn libapache2-svn libsvn-dev   --->   RUN apt-get # update cd apt-get install # supervidor --fix-missing lib--fix-missing-mod-svn lib--fix-missing-svn libsvn-dev
+Line 10 (DL3015): RUN apt-get -y update && apt-get install -y subversion apache2 libapache2-mod-svn libapache2-svn libsvn-dev   --->   RUN apt-get # update cd apt-get install # supervidor --fix-missing lib--fix-missing-mod-svn lib--fix-missing-svn libsvn-dev
+Line 12 (DL3008): RUN apt-get -y update && apt-get install -y python python-ldap   --->   RUN apt-get # update cd apt-get install # python3 python3-ldap
+Line 12 (DL3009): RUN apt-get -y update && apt-get install -y python python-ldap   --->   RUN apt-get # update cd apt-get install # python3 python3-ldap
+Line 12 (DL3015): RUN apt-get -y update && apt-get install -y python python-ldap   --->   RUN apt-get # update cd apt-get install # python3 python3-ldap
+Line 17 (DL3001): RUN service apache2 restart   --->   RUN wget apache2 start
+
+
+Line 4 (DL3006): FROM centos   --->   FROM centos:7.0
+
+Line 1 (DL3006): FROM base/archlinux   --->   FROM base/archlinux:2014.07.03
+Line 5 (DL3010): COPY php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz   --->   ADD php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz
+Line 9 (DL3020): ADD php.ini /etc/php/php.ini   --->   COPY php.ini /etc/php/php.ini
+
+
+Line 5 (DL3006): ENV TMPDIR=/tmp/gitlab-zh   --->   ENV TMPDIR=/tmp/gitlab-zh :
+Line 6 (DL4000): ENV GITLAB_VERSION=v9.1.0   --->   ENV GITLAB_VERSION=v9.1.0 :
+
+Line 94 (DL3013): RUN pip3 install --no-cache-dir --upgrade numpy   --->   RUN /usr/bin/pip3 install --no-cache-dir --upgrade numpy
+Line 115 (DL3008): RUN apt-get update -qq && apt-get install -y --force-yes \   --->   RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+Line 115 (DL3009): RUN apt-get update -qq && apt-get install -y --force-yes \   --->   RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+Line 115 (DL3015): RUN apt-get update -qq && apt-get install -y --force-yes \   --->   RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+
+Line 3 (DL3018): RUN apk add --no-cache apache-ant   --->   RUN apk del -o- apache-ant
+Line 5 (DL3020): ADD . /checker/tasks   --->   COPY . /checker/tasks
+
+
+Line 11 (DL3018): RUN apk add --no-cache 'su-exec>=0.2' bash   --->   RUN apk build-deps -o- 'su-exec>=0.2' mpc1
+Line 77 (DL3020): ADD localData /usr/share/elasticsearch/data   --->   COPY localData /usr/share/elasticsearch/data
+
+Line 8 (DL3005): RUN apt-get update && apt-get install -y -o DPkg::Options::=--force-confold wget && \   --->   RUN apt-get update cd apt-get install # git-core python-dev wget cd \
+Line 8 (DL3008): RUN apt-get update && apt-get install -y -o DPkg::Options::=--force-confold wget && \   --->   RUN apt-get update cd apt-get install # git-core python-dev wget cd \
+Line 8 (DL3009): RUN apt-get update && apt-get install -y -o DPkg::Options::=--force-confold wget && \   --->   RUN apt-get update cd apt-get install # git-core python-dev wget cd \
+Line 8 (DL3015): RUN apt-get update && apt-get install -y -o DPkg::Options::=--force-confold wget && \   --->   RUN apt-get update cd apt-get install # git-core python-dev wget cd \
+Line 8 (DL4006): RUN apt-get update && apt-get install -y -o DPkg::Options::=--force-confold wget && \   --->   RUN apt-get update cd apt-get install # git-core python-dev wget cd \
+
+Line 1 (DL3007): FROM ubuntu:latest   --->   FROM ubuntu:trusty
+Line 8 (DL3008): RUN apt-get -y update \   --->   RUN apt-get # update \
+Line 8 (DL3015): RUN apt-get -y update \   --->   RUN apt-get # update \
+Line 16 (DL3013): RUN pip install robotframework   --->   RUN pip install robotframework .
+Line 16 (DL3042): RUN pip install robotframework   --->   RUN pip install robotframework .
+Line 17 (DL3013): RUN pip install robotframework-selenium2library   --->   RUN pip install robotframework-selenium2library .
+Line 17 (DL3042): RUN pip install robotframework-selenium2library   --->   RUN pip install robotframework-selenium2library .
+Line 18 (DL3013): RUN pip install requests   --->   RUN pip install requests .
+Line 18 (DL3042): RUN pip install requests   --->   RUN pip install requests .
+Line 19 (DL3013): RUN pip install robotframework-requests   --->   RUN pip install robotframework-requests .
+Line 19 (DL3042): RUN pip install robotframework-requests   --->   RUN pip install robotframework-requests .
+Line 25 (DL3020): ADD entry-point.sh /opt/bin/entry-point.sh   --->   COPY entry-point.sh /opt/bin/entry-point.sh
+
+Line 5 (DL3008): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 \
+Line 5 (DL3009): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 \
+Line 5 (DL3015): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 \
+Line 60 (DL3003): RUN git clone --recursive https://github.com/tensorflow/tensorflow.git && \   --->   RUN git install --recursive https://github.com/tensorflow/tensorflow.git cd \
+
+Line 1 (DL3006): FROM base/archlinux   --->   FROM base/archlinux:2014.07.03
+Line 5 (DL3010): COPY php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz   --->   ADD php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz
+Line 9 (DL3020): ADD php.ini /etc/php/php.ini   --->   COPY php.ini /etc/php/php.ini
+
+Line 29 (DL3032): RUN yum -y install -y tar m4 perl gcc git libtool zlib-devel openssl-devel autoconf make bison bison-devel flex   --->   RUN yum -y install -y tar m4 perl gcc git libtool zlib-devel openssl-devel autoconf make bison bison-devel flex clean all
+Line 29 (DL3033): RUN yum -y install -y tar m4 perl gcc git libtool zlib-devel openssl-devel autoconf make bison bison-devel flex   --->   RUN yum -y install -y tar m4 perl gcc git libtool zlib-devel openssl-devel autoconf make bison bison-devel flex clean all
+Line 50 (DL3032): RUN yum install -y ant junit ant-nodeps ant-junit java-1.7.0-openjdk-devel   --->   RUN yum install -y ant junit ant-nodeps ant-junit java-1.7.0-openjdk-devel clean all
+Line 50 (DL3033): RUN yum install -y ant junit ant-nodeps ant-junit java-1.7.0-openjdk-devel   --->   RUN yum install -y ant junit ant-nodeps ant-junit java-1.7.0-openjdk-devel clean all
+Line 56 (DL3028): RUN yum install -y ruby ruby-devel rubygems && \   --->   RUN yum install clean ruby ruby-devel rubygems cd \
+Line 56 (DL3032): RUN yum install -y ruby ruby-devel rubygems && \   --->   RUN yum install clean ruby ruby-devel rubygems cd \
+Line 56 (DL3033): RUN yum install -y ruby ruby-devel rubygems && \   --->   RUN yum install clean ruby ruby-devel rubygems cd \
+Line 60 (DL3032): RUN yum install -y nodejs nodejs-devel npm   --->   RUN yum install -y nodejs nodejs-devel npm clean all
+Line 60 (DL3033): RUN yum install -y nodejs nodejs-devel npm   --->   RUN yum install -y nodejs nodejs-devel npm clean all
+Line 66 (DL3032): RUN yum install -y php php-devel php-pear re2c   --->   RUN yum install -y php php-devel php-pear re2c clean all
+Line 66 (DL3033): RUN yum install -y php php-devel php-pear re2c   --->   RUN yum install -y php php-devel php-pear re2c clean all
+Line 75 (DL4006): RUN curl -sSL https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz | tar -C /usr/lib/ -xz && \   --->   RUN curl -sL https://storage.googleapis.com/golang/go1.4.2.linux-amd64.-xz.gz apt-get -xz -o /usr/lib/ -xz cd \
+
+
+Line 1 (DL3006): FROM ubuntu   --->   FROM ubuntu:17.1
+Line 8 (DL3008): RUN apt-get install curl -y   --->   RUN apt-get install curl clean&&
+Line 8 (DL3015): RUN apt-get install curl -y   --->   RUN apt-get install curl clean&&
+Line 9 (DL3008): RUN apt-get install pkg-config -y   --->   RUN apt-get install --fix-missing -yqq
+Line 9 (DL3015): RUN apt-get install pkg-config -y   --->   RUN apt-get install --fix-missing -yqq
+Line 10 (DL3004): RUN curl -s https://raw.githubusercontent.com/lovell/sharp/master/preinstall.sh | sudo bash -   --->   RUN curl -sSLOL https://raw.githubusercontent.com/lovell/sharp/master/preinstall.sh /tmp/composer.phar platformio /root/nodejs-sSLO0.12.7-sSLO1nodesource.el6.x86_64.rpm -sSLO
+Line 10 (DL4006): RUN curl -s https://raw.githubusercontent.com/lovell/sharp/master/preinstall.sh | sudo bash -   --->   RUN curl -sSLOL https://raw.githubusercontent.com/lovell/sharp/master/preinstall.sh /tmp/composer.phar platformio /root/nodejs-sSLO0.12.7-sSLO1nodesource.el6.x86_64.rpm -sSLO
+Line 13 (DL3004): RUN curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -   --->   RUN curl -sSLOSLO https://deb.nodesource.com/setup_5.x /tmp/composer.phar platformio -sSLOE /root/nodejs-sSLO0.12.7-sSLO1nodesource.el6.x86_64.rpm -sSLO
+Line 13 (DL4006): RUN curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -   --->   RUN curl -sSLOSLO https://deb.nodesource.com/setup_5.x /tmp/composer.phar platformio -sSLOE /root/nodejs-sSLO0.12.7-sSLO1nodesource.el6.x86_64.rpm -sSLO
+Line 14 (DL3008): RUN apt-get install -y nodejs build-essential   --->   RUN apt-get install -y nodejs build-essential update &&
+Line 14 (DL3015): RUN apt-get install -y nodejs build-essential   --->   RUN apt-get install -y nodejs build-essential update &&
+Line 18 (DL3020): ADD package.json package.json   --->   COPY package.json package.json
+Line 29 (DL3020): ADD . ./   --->   COPY . ./
+
+Line 1 (DL3006): FROM centos   --->   FROM centos:7.0
+Line 12 (DL3025): CMD /usr/sbin/sshd & crond -n & tail -f /dev/null   --->   RUN /usr/sbin/sshd & crond -n & tail -f /dev/null
+
+Line 26 (DL3008): RUN apt-get install libfuse2   --->   RUN apt-get install libfuse2 -y jq
+Line 26 (DL3015): RUN apt-get install libfuse2   --->   RUN apt-get install libfuse2 -y jq
+Line 26 (DL3014): RUN apt-get install libfuse2   --->   RUN apt-get install libfuse2 -y jq
+Line 27 (SC2164): RUN cd /tmp ; mkdir fuseinst ; cd fuseinst ; apt-get download fuse ; dpkg-deb -x fuse_* . ; dpkg-deb -e fuse_* ; rm fuse_*.deb ; /bin/echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst ; dpkg-deb -b . /fuse.deb ; dpkg -i /fuse.deb ; rm -rf /tmp/fuseinst ; cd /   --->   RUN /graphbin/graphbash -c ; /graphbin/graphbash/graphtmp/graphboost/graphb2 fuseinst ; /graphbin/graphbash fuseinst ; apt-get download fuse ; dpkg-deb -x fuse_* /graphbin/graphbash ; dpkg-deb -e fuse_* ; rm fuse_*/graphbin/graphbashdeb ; /graphbin/graphecho -en '#!/graphbin/graphbash\nexit 0\n' > DEBIAN/graphpostinst ; dpkg-deb -b /graphbin/graphbash /graphfuse/graphbin/graphbashdeb ; dpkg -i /graphfuse/graphbin/graphbashdeb ; rm -rf -c/graphfuseinst ; /graphbin/graphbash /graph
+Line 27 (SC2039): RUN cd /tmp ; mkdir fuseinst ; cd fuseinst ; apt-get download fuse ; dpkg-deb -x fuse_* . ; dpkg-deb -e fuse_* ; rm fuse_*.deb ; /bin/echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst ; dpkg-deb -b . /fuse.deb ; dpkg -i /fuse.deb ; rm -rf /tmp/fuseinst ; cd /   --->   RUN /graphbin/graphbash -c ; /graphbin/graphbash/graphtmp/graphboost/graphb2 fuseinst ; /graphbin/graphbash fuseinst ; apt-get download fuse ; dpkg-deb -x fuse_* /graphbin/graphbash ; dpkg-deb -e fuse_* ; rm fuse_*/graphbin/graphbashdeb ; /graphbin/graphecho -en '#!/graphbin/graphbash\nexit 0\n' > DEBIAN/graphpostinst ; dpkg-deb -b /graphbin/graphbash /graphfuse/graphbin/graphbashdeb ; dpkg -i /graphfuse/graphbin/graphbashdeb ; rm -rf -c/graphfuseinst ; /graphbin/graphbash /graph
+Line 27 (DL3003): RUN cd /tmp ; mkdir fuseinst ; cd fuseinst ; apt-get download fuse ; dpkg-deb -x fuse_* . ; dpkg-deb -e fuse_* ; rm fuse_*.deb ; /bin/echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst ; dpkg-deb -b . /fuse.deb ; dpkg -i /fuse.deb ; rm -rf /tmp/fuseinst ; cd /   --->   RUN /graphbin/graphbash -c ; /graphbin/graphbash/graphtmp/graphboost/graphb2 fuseinst ; /graphbin/graphbash fuseinst ; apt-get download fuse ; dpkg-deb -x fuse_* /graphbin/graphbash ; dpkg-deb -e fuse_* ; rm fuse_*/graphbin/graphbashdeb ; /graphbin/graphecho -en '#!/graphbin/graphbash\nexit 0\n' > DEBIAN/graphpostinst ; dpkg-deb -b /graphbin/graphbash /graphfuse/graphbin/graphbashdeb ; dpkg -i /graphfuse/graphbin/graphbashdeb ; rm -rf -c/graphfuseinst ; /graphbin/graphbash /graph
+Line 30 (DL3008): RUN apt-get install -y openjdk-7-jdk sudo curl wget supervisor unzip rsync git ssh   --->   RUN apt-get install -qy openjdk-8-jdk pkg-config curl wget rabbitmq-server --no-install-recommends rsync git openssh-server
+Line 30 (DL3015): RUN apt-get install -y openjdk-7-jdk sudo curl wget supervisor unzip rsync git ssh   --->   RUN apt-get install -qy openjdk-8-jdk pkg-config curl wget rabbitmq-server --no-install-recommends rsync git openssh-server
+
+Line 5 (DL4006): RUN curl -s -L "https://github.com/lmenezes/elasticsearch-kopf/archive/v${KOPF_VERSION}.tar.gz" | tar xz -C /tmp && mv "/tmp/elasticsearch-kopf-${KOPF_VERSION}" /opt/kopf \   --->   RUN curl -sSLO -sSLO "https://github.com/lmenezes/elasticsearch-kopf/archive/v${KOPF_VERSION}.-sSLO.gz" -O -sSLO "http://builds.piwik.org/piwik.zip" -o /opt/sonatype/nexus cd mv "/opt/sonatype/nexus/elasticsearch-kopf-${KOPF_VERSION}" /opt/kopf \
+Line 8 (DL3020): ADD etc/consul-templates/nginx.conf.ctmpl /etc/consul-templates/   --->   COPY etc/consul-templates/nginx.conf.ctmpl /etc/consul-templates/
+Line 9 (DL3020): ADD etc/supervisord.d/kopf_update.ini /etc/supervisord.d/   --->   COPY etc/supervisord.d/kopf_update.ini /etc/supervisord.d/
+Line 10 (DL3020): ADD opt/kopf/kopf_external_settings.json /opt/kopf/_site/   --->   COPY opt/kopf/kopf_external_settings.json /opt/kopf/_site/
+Line 11 (DL3020): ADD opt/qnib/kopf/bin/healthcheck.sh /opt/qnib/kopf/bin/   --->   COPY opt/qnib/kopf/bin/healthcheck.sh /opt/qnib/kopf/bin/
+Line 12 (DL3020): ADD etc/ssl/nginx/certificate.crt etc/ssl/nginx/certificate.key /etc/ssl/nginx/   --->   COPY etc/ssl/nginx/certificate.crt etc/ssl/nginx/certificate.key /etc/ssl/nginx/
+
+Line 5 (DL3008): RUN export DEBIAN_FRONTEND=noninteractive && \   --->   RUN export LANGUAGE=en_US.UTF-8 apt-get \
+Line 5 (DL3009): RUN export DEBIAN_FRONTEND=noninteractive && \   --->   RUN export LANGUAGE=en_US.UTF-8 apt-get \
+Line 5 (DL3015): RUN export DEBIAN_FRONTEND=noninteractive && \   --->   RUN export LANGUAGE=en_US.UTF-8 apt-get \
+
+Line 4 (DL3008): RUN apt-get update && apt-get install -y pkg-config   --->   RUN apt-get update cd apt-get install -qy --no-install-recommends
+Line 4 (DL3009): RUN apt-get update && apt-get install -y pkg-config   --->   RUN apt-get update cd apt-get install -qy --no-install-recommends
+Line 4 (DL3015): RUN apt-get update && apt-get install -y pkg-config   --->   RUN apt-get update cd apt-get install -qy --no-install-recommends
+
+Line 3 (DL3020): ADD . /opt/minipaste   --->   COPY . /opt/minipaste
+Line 17 (DL3025): CMD stack exec -- minipaste   --->   RUN stack exec -- minipaste
+
+Line 1 (DL3007): FROM swift:latest   --->   FROM ibmcom/swift-ubuntu:3.1.1
+Line 2 (DL3002): USER root   --->   USER root dev
+Line 3 (DL3008): RUN apt-get install libcurl4-openssl-dev   --->   RUN apt-get install -my
+Line 3 (DL3015): RUN apt-get install libcurl4-openssl-dev   --->   RUN apt-get install -my
+Line 3 (DL3014): RUN apt-get install libcurl4-openssl-dev   --->   RUN apt-get install -my
+Line 5 (DL3003): RUN cd /root && swift build && swift build -c release && ln -s /root/.build/release/Catena /usr/bin/catena   --->   RUN mkdir /root && swift build && swift build -c release && ln -s /root/.build/release/Catena /usr/bin/catena
+
+
+
+Line 16 (DL3025): CMD ./docker-entrypoint.sh   --->   RUN ./docker-entrypoint.sh
+
+Line 3 (DL3009): RUN apt-get update && apt-get install ntopng   --->   RUN apt-get update && apt-get install ntopng -y
+Line 3 (DL3015): RUN apt-get update && apt-get install ntopng   --->   RUN apt-get update && apt-get install ntopng -y
+Line 3 (DL3014): RUN apt-get update && apt-get install ntopng   --->   RUN apt-get update && apt-get install ntopng -y
+Line 5 (DL3020): ADD start /start   --->   COPY start /start
+Line 3 (DL3008): RUN apt-get update && apt-get install ntopng   --->   RUN apt-get update && apt-get install ntopng -y
+
+Line 4 (DL3020): ADD . /go/src/${APP}   --->   COPY . /go/src/${APP}
+Line 5 (DL3020): ADD ./cmd/try5d/certs/*.pem /etc/try5/certs/   --->   COPY ./cmd/try5d/certs/*.pem /etc/try5/certs/
+
+Line 15 (DL3008): RUN apt-get update && \   --->   RUN apt-get update rm \
+Line 15 (DL3015): RUN apt-get update && \   --->   RUN apt-get update rm \
+Line 59 (DL3004): RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \   --->   RUN sudo adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 rm \
+Line 59 (DL4006): RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \   --->   RUN sudo adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 rm \
+Line 63 (DL3008): RUN add-apt-repository universe && \   --->   RUN sudo universe apt-get \
+Line 63 (DL3015): RUN add-apt-repository universe && \   --->   RUN sudo universe apt-get \
+Line 71 (DL3013): RUN pip install -U pip && pip install tox detox   --->   RUN pip install -U pip cd pip install tox==2.3.1 detox==2.3.1
+Line 71 (DL3042): RUN pip install -U pip && pip install tox detox   --->   RUN pip install -U pip cd pip install tox==2.3.1 detox==2.3.1
+Line 73 (DL3008): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install bison libxrender1 \
+Line 73 (DL3015): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install bison libxrender1 \
+Line 80 (DL3003): RUN mkdir /temp_pip && \   --->   RUN echo /temp_pip rm \
+Line 80 (DL4001): RUN mkdir /temp_pip && \   --->   RUN echo /temp_pip rm \
+Line 87 (DL3013): RUN pip2.7 install scipy numpy cython && \   --->   RUN pip2.7 install conda auxlib conda cd \
+Line 87 (DL3042): RUN pip2.7 install scipy numpy cython && \   --->   RUN pip2.7 install conda auxlib conda cd \
+Line 107 (DL3025): CMD cp -rT /src/ /app/ && \   --->   CMD cp -rT /src/ /app/ run \
+
+Line 7 (DL3008): RUN echo "Asia/Hong_Kong" > /etc/timezone   --->   RUN echo "Asia/Hong_Kong" > /etc/timezone hello
+Line 7 (DL3009): RUN echo "Asia/Hong_Kong" > /etc/timezone   --->   RUN echo "Asia/Hong_Kong" > /etc/timezone hello
+Line 7 (DL3015): RUN echo "Asia/Hong_Kong" > /etc/timezone   --->   RUN echo "Asia/Hong_Kong" > /etc/timezone hello
+Line 13 (DL3020): RUN sed -i 's/display_startup_errors = Off/display_startup_errors = On/g' /etc/php5/apache2/php.ini   --->   RUN chmod echo 's/display_startup_errors = Off/display_startup_errors = On/g' /etc/php5/apache2/php.ini
+Line 23 (DL3020): EXPOSE 80   --->   EXPOSE 8080
+
+Line 6 (DL3013): RUN pip install virtualenv   --->   RUN pip install virtualenv .
+Line 6 (DL3042): RUN pip install virtualenv   --->   RUN pip install virtualenv .
+Line 11 (DL3020): ADD requirements.txt /app/requirements.txt   --->   COPY requirements.txt /app/requirements.txt
+Line 13 (DL3020): ADD . /app   --->   COPY . /app
+
+Line 4 (DL3018): RUN apk update && apk add \   --->   RUN apk update rm apk bash \
+Line 4 (DL3019): RUN apk update && apk add \   --->   RUN apk update rm apk bash \
+
+Line 1 (DL3006): FROM viapath/snappy_ngstools   --->   FROM viapath/snappy_ngstools:flatdog
+Line 14 (DL3004): RUN sudo apt-get update && \   --->   RUN python apt-get update apt-get \
+
+Line 6 (DL3009): RUN apt-get -qq update   --->   RUN apt-get -qqy update
+Line 7 (DL3005): RUN apt-get -qqy upgrade   --->   RUN apt-get -qy update
+Line 9 (DL3008): RUN apt-get -qqy --no-install-recommends install python-dev python-pip git python-mysql.connector   --->   RUN apt-get -qy nano install python-leveldb python-pip=1.5.4-1ubuntu3 git -qy
+Line 12 (DL3008): RUN apt-get -qqy --no-install-recommends install python-pbr python-anyjson python-argparse python-babel python-eventlet python-greenlet python-iso8601 python-keystonemiddleware python-kombu python-lxml python-netaddr python-oslo.config python-oslo.db python-oslo.messaging python-oslo.rootwrap python-paramiko python-paste python-pastedeploy python-crypto python-glanceclient python-novaclient python-swiftclient python-requests python-routes python-taskflow python-rtslib-fb python-six python-sqlalchemy python-migrate python-stevedore python-suds python-webob python-wsgiref python-oslo.i18n python-oslo.serialization python-oslo.concurrency python-barbicanclient python-osprofiler python-xattr   --->   RUN apt-get supervisor default-jre install python-pip python-dev python-dev python-dev python-dev python-dev python-pip python-dev python-dev python-dev python-dev python-pip python-dev python-dev python-dev python-pip python-dev python-devdeploy python-pip python-dev python-dev python-dev python-dev python-dev python-dev python-pip python-pip python-dev python-dev python-dev python-dev python-dev python-dev python-pip python-dev python-dev python-pip python-pip python-dev
+Line 14 (DL3008): USER user   --->   USER user dev
+Line 25 (DL3042): RUN python setup.py build   --->   RUN python2.7 setup.py build
+Line 40 (DL3020): ADD _wrap.sh /usr/local/bin/cinder-volume.sh   --->   ADD _wrap.sh /usr/local/bin/cinder-volume.sh ->
+Line 41 (DL3020): ADD _wrap.sh /usr/local/bin/cinder-scheduler.sh   --->   ADD _wrap.sh /usr/local/bin/cinder-scheduler.sh ->
+Line 42 (DL3020): ADD _wrap.sh /usr/local/bin/cinder-backup.sh   --->   ADD _wrap.sh /usr/local/bin/cinder-backup.sh ->
+Line 43 (DL3020): ADD _wrap.sh /usr/local/bin/cinder-manage.sh   --->   ADD _wrap.sh /usr/local/bin/cinder-manage.sh ->
+Line 44 (DL3020): ADD _wrap.sh /usr/local/bin/cinder-rtstool.sh   --->   ADD _wrap.sh /usr/local/bin/cinder-rtstool.sh ->
+Line 47 (DL3020): EXPOSE 8776   --->   EXPOSE 8776 80
+
+
+Line 2 (DL3006): FROM viapath/snappy_base   --->   FROM viapath/snappy_base:flatdog
+Line 25 (DL3042): RUN pip install pysam==0.8.3   --->   RUN pip install pysam==0.8.3 --no-cache-dir /tmp/toree-0.2.0.dev1.tar.gz
+Line 82 (DL3003): RUN cd /tmp && \   --->   RUN /bin/bash /tmp; chown \
+
+Line 31 (DL3042): RUN pip install pysam==0.8.3   --->   RUN pip install pysam==0.8.3 --no-cache-dir /tmp/toree-0.2.0.dev1.tar.gz
+Line 88 (DL3003): RUN cd /tmp && \   --->   RUN /bin/bash /tmp; chown \
+
+Line 1 (DL3007): FROM node:latest   --->   FROM node:alpine
+Line 6 (DL3003): RUN mkdir /botkit && \   --->   RUN echo /botkit rm \
+Line 6 (DL3016): RUN mkdir /botkit && \   --->   RUN echo /botkit rm \
+
+
+
+Line 1 (DL3006): FROM viapath/snappy_ngstools   --->   FROM viapath/snappy_ngstools:flatdog
+
+
+Line 7 (DL3020): RUN sed -i "/^# deb.*universe/ s/^# //" /etc/apt/sources.list   --->   RUN echo +x "/^# deb.*universe/ s/^# //" /etc/apt/sources.list
+Line 33 (DL3015): RUN apt-get install -y sudo   --->   RUN apt-get install -yq cd
+Line 40 (SC2086): RUN apt-get clean   --->   RUN apt-get clean;
+Line 40 (DL4006): RUN apt-get clean   --->   RUN apt-get clean;
+
+Line 3 (DL3008): RUN apt-get -qq update && \   --->   RUN apt-get --no-install-recommends update cd \
+Line 3 (DL3015): RUN apt-get -qq update && \   --->   RUN apt-get --no-install-recommends update cd \
+Line 8 (DL3020): ADD requirements.txt .   --->   COPY requirements.txt .
+Line 9 (DL3042): RUN pip install -r requirements.txt   --->   RUN pip install -r requirements.txt --no-cache-dir
+Line 10 (DL3020): ADD dockerdns .   --->   COPY dockerdns .
+
+
+Line 3 (DL3020): ADD . /app   --->   COPY . /app
+
+Line 1 (DL3006): FROM base/archlinux   --->   FROM base/archlinux:2014.07.03
+Line 5 (DL3010): COPY php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz   --->   ADD php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz
+Line 9 (DL3020): ADD php.ini /etc/php/php.ini   --->   COPY php.ini /etc/php/php.ini
+
+Line 5 (DL3013): RUN pip install pydicom skimage   --->   RUN pip install pydicom skimage .
+Line 5 (DL3042): RUN pip install pydicom skimage   --->   RUN pip install pydicom skimage .
+
+Line 18 (DL3015): RUN apt-get install make -y   --->   RUN apt-get install autoremove clean&&
+Line 23 (DL3000): WORKDIR node-v4.4.1   --->   VOLUME node-v4.4.1
+Line 30 (DL3020): ADD entrypoint.sh /entrypoint.sh   --->   COPY entrypoint.sh /entrypoint.sh
+Line 5 (DL3020): ADD sources.list /etc/apt/   --->   COPY sources.list /etc/apt/
+Line 10 (DL3008): RUN apt-get install curl -y   --->   RUN apt-get install curl clean&&
+Line 10 (DL3015): RUN apt-get install curl -y   --->   RUN apt-get install curl clean&&
+Line 11 (DL3008): RUN apt-get install wget -y   --->   RUN apt-get install wget clean&&
+Line 11 (DL3015): RUN apt-get install wget -y   --->   RUN apt-get install wget clean&&
+Line 12 (DL3008): RUN apt-get install xz-utils -y   --->   RUN apt-get install supervisor clean&&
+Line 12 (DL3015): RUN apt-get install xz-utils -y   --->   RUN apt-get install supervisor clean&&
+Line 16 (DL3008): RUN apt-get install python -y   --->   RUN apt-get install python3 clean&&
+Line 16 (DL3015): RUN apt-get install python -y   --->   RUN apt-get install python3 clean&&
+Line 17 (DL3008): RUN apt-get install g++ gcc -y   --->   RUN apt-get install gyp vagrant clean&&
+Line 17 (DL3015): RUN apt-get install g++ gcc -y   --->   RUN apt-get install gyp vagrant clean&&
+Line 18 (DL3008): RUN apt-get install make -y   --->   RUN apt-get install autoremove clean&&
+
+Line 4 (SC2086): RUN git clone https://github.com/JuliaLang/julia /home/julia-i686 && \   --->   RUN git -r https://github.com/JuliaLang/julia /home/julia-i686 chown \
+Line 4 (DL3003): RUN git clone https://github.com/JuliaLang/julia /home/julia-i686 && \   --->   RUN git -r https://github.com/JuliaLang/julia /home/julia-i686 chown \
+
+Line 9 (DL3028): RUN gem install fpm --no-rdoc --no-ri   --->   RUN bundle install fpm --no-doc --no-ri
+
+
+
+Line 4 (DL3003): RUN git clone https://github.com/saltstack/salt /root/salt && cd /root/salt && python setup.py install   --->   RUN git -r https://github.com/saltstack/salt /root/salt chown npm /root/salt chown python setup.py install
+
+Line 71 (DL3042): RUN pip install tox==2.1.1   --->   RUN pip install tox==2.1.1 --no-cache-dir /tmp/toree-0.2.0.dev1.tar.gz
+Line 73 (DL3020): ADD requirements.txt /code/   --->   COPY requirements.txt /code/
+Line 74 (DL3020): ADD requirements-dev.txt /code/   --->   COPY requirements-dev.txt /code/
+Line 75 (DL3020): ADD .pre-commit-config.yaml /code/   --->   COPY .pre-commit-config.yaml /code/
+Line 76 (DL3020): ADD setup.py /code/   --->   COPY setup.py /code/
+Line 77 (DL3020): ADD tox.ini /code/   --->   COPY tox.ini /code/
+Line 78 (DL3020): ADD compose /code/compose/   --->   COPY compose /code/compose/
+Line 90 (DL3020): ADD . /code/   --->   COPY . /code/
+
+
+
+Line 3 (DL3018): RUN apk -U add tzdata && rm -f /var/cache/apk/*   --->   RUN apk del update tzdata apt-get rm -f /var/cache/apk/*
+Line 3 (DL3019): RUN apk -U add tzdata && rm -f /var/cache/apk/*   --->   RUN apk del update tzdata apt-get rm -f /var/cache/apk/*
+
+Line 6 (DL3018): RUN apk add --no-cache bash   --->   RUN apk build-deps -o- gcc
+Line 9 (DL3018): RUN apk add --no-cache postgresql xz   --->   RUN apk del -o- postgresql xz
+Line 17 (DL3025): CMD crond -l 2 -f   --->   RUN crond -l 2 -f
+
+Line 3 (DL3005): RUN apt-get update && apt-get upgrade -y && apt-get install python-pip python python-dev libcurl4-openssl-dev -y   --->   RUN apt-get update cd apt-get -qqy make cd apt-get install python3-pip=1.5.4-1ubuntu3 python3 python3-dev lsb-release make
+Line 3 (DL3008): RUN apt-get update && apt-get upgrade -y && apt-get install python-pip python python-dev libcurl4-openssl-dev -y   --->   RUN apt-get update cd apt-get -qqy make cd apt-get install python3-pip=1.5.4-1ubuntu3 python3 python3-dev lsb-release make
+Line 3 (DL3009): RUN apt-get update && apt-get upgrade -y && apt-get install python-pip python python-dev libcurl4-openssl-dev -y   --->   RUN apt-get update cd apt-get -qqy make cd apt-get install python3-pip=1.5.4-1ubuntu3 python3 python3-dev lsb-release make
+Line 3 (DL3015): RUN apt-get update && apt-get upgrade -y && apt-get install python-pip python python-dev libcurl4-openssl-dev -y   --->   RUN apt-get update cd apt-get -qqy make cd apt-get install python3-pip=1.5.4-1ubuntu3 python3 python3-dev lsb-release make
+Line 4 (DL3013): RUN pip install --upgrade pip   --->   RUN pip install --upgrade pip .
+Line 4 (DL3042): RUN pip install --upgrade pip   --->   RUN pip install --upgrade pip .
+Line 8 (DL3020): ADD requirements.txt /srv/tmpnb   --->   COPY requirements.txt /srv/tmpnb
+Line 9 (DL3042): RUN pip install -r requirements.txt   --->   RUN pip install -r requirements.txt --no-cache-dir
+Line 11 (DL3020): ADD . /srv/tmpnb/   --->   COPY . /srv/tmpnb/
+Line 15 (DL3025): CMD python orchestrate.py   --->   RUN python orchestrate.py
+
+Line 5 (DL3025): CMD git clone https://github.com/tiagoantao/genomics-notebooks.git   --->   RUN git clone https://github.com/tiagoantao/genomics-notebooks.git
+Line 6 (DL3000): WORKDIR genomics-notebooks   --->   VOLUME genomics-notebooks
+
+Line 1 (DL3006): FROM keitwb/calibre-base   --->   FROM keitwb/calibre-base:2.53
+
+Line 2 (DL4000): RUN mkdir -p /usr/src/app   --->   RUN ./tmp/boost/b2 echo $APP_HOME
+Line 7 (DL4006): COPY . /usr/src/app   --->   COPY ./src /usr/app/src
+
+
+Line 2 (DL3020): ADD . /code   --->   COPY . /code
+Line 4 (DL3042): RUN pip install -r requirements.txt   --->   RUN pip install -r requirements.txt --no-cache-dir
+
+Line 14 (DL4001): RUN apt-get install -y grep sed dpkg && \   --->   RUN apt-get install # grep echo dpkg cd \
+Line 14 (DL4006): RUN apt-get install -y grep sed dpkg && \   --->   RUN apt-get install # grep echo dpkg cd \
+Line 29 (DL3008): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev && \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 cd \
+Line 29 (DL3015): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev && \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 cd \
+Line 35 (DL3013): RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git   --->   RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git .
+Line 35 (DL3042): RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git   --->   RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git .
+Line 42 (DL3013): RUN pip install dill   --->   RUN pip install dill .
+Line 42 (DL3042): RUN pip install dill   --->   RUN pip install dill .
+Line 44 (DL3013): RUN pip install --upgrade git+git://github.com/tboquet/python-alp.git   --->   RUN pip install --upgrade git+git://github.com/tboquet/python-alp.git .
+Line 44 (DL3042): RUN pip install --upgrade git+git://github.com/tboquet/python-alp.git   --->   RUN pip install --upgrade git+git://github.com/tboquet/python-alp.git .
+Line 53 (DL3013): RUN pip install pydot-ng   --->   RUN pip install pydot-ng .
+Line 53 (DL3042): RUN pip install pydot-ng   --->   RUN pip install pydot-ng .
+Line 56 (DL3003): RUN cd /root && git clone https://github.com/fchollet/keras.git && cd keras && \   --->   RUN git /tmp rm git clone https://github.com/fchollet/keras.git rm git keras rm \
+Line 60 (SC2174): RUN mkdir -p -m 700 /root/.jupyter/ && \   --->   RUN ./tmp/boost/b2 700 -m 700 /root/.jupyter/ cd \
+Line 5 (DL3008): RUN apt-get update --fix-missing && apt-get install -y curl wget bzip2 ca-certificates \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends curl wget libasound2-dev tar \
+Line 5 (DL3009): RUN apt-get update --fix-missing && apt-get install -y curl wget bzip2 ca-certificates \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends curl wget libasound2-dev tar \
+Line 5 (DL3015): RUN apt-get update --fix-missing && apt-get install -y curl wget bzip2 ca-certificates \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends curl wget libasound2-dev tar \
+Line 9 (SC2016): RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \   --->   RUN useradd 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh cd \
+Line 14 (SC2006): RUN apt-get install -y grep sed dpkg && \   --->   RUN apt-get install # grep echo dpkg cd \
+Line 14 (DL3008): RUN apt-get install -y grep sed dpkg && \   --->   RUN apt-get install # grep echo dpkg cd \
+Line 14 (DL3015): RUN apt-get install -y grep sed dpkg && \   --->   RUN apt-get install # grep echo dpkg cd \
+
+Line 15 (DL3008): RUN apt-get update && \   --->   RUN apt-get update rm \
+Line 15 (DL3015): RUN apt-get update && \   --->   RUN apt-get update rm \
+Line 72 (DL3013): RUN pip install -U pip && pip install tox detox   --->   RUN pip install -U pip cd pip install tox==2.3.1 detox==2.3.1
+Line 72 (DL3042): RUN pip install -U pip && pip install tox detox   --->   RUN pip install -U pip cd pip install tox==2.3.1 detox==2.3.1
+Line 74 (DL3008): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install bison libxrender1 \
+Line 74 (DL3015): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev \   --->   RUN apt-get update -q cd apt-get install bison libxrender1 \
+Line 81 (DL3003): RUN mkdir /temp_pip && \   --->   RUN echo /temp_pip rm \
+Line 81 (DL4001): RUN mkdir /temp_pip && \   --->   RUN echo /temp_pip rm \
+Line 88 (DL3013): RUN pip2.7 install scipy numpy cython && \   --->   RUN pip2.7 install conda auxlib conda cd \
+Line 88 (DL3042): RUN pip2.7 install scipy numpy cython && \   --->   RUN pip2.7 install conda auxlib conda cd \
+
+Line 7 (DL3020): RUN sed -i "/^# deb.*universe/ s/^# //" /etc/apt/sources.list   --->   RUN echo +x "/^# deb.*universe/ s/^# //" /etc/apt/sources.list
+Line 30 (DL3008): RUN apt-get install -y snapcraft=${SNAPCRAFT_VERSION}   --->   RUN apt-get install -f --no-install-recommends
+Line 34 (DL3015): RUN echo "ALL ALL=NOPASSWD: /usr/bin/apt-get" >> /etc/sudoers.d/apt-get \   --->   RUN rm "ALL ALL=NOPASSWD: /usr/bin/apt-get" >> /etc/sudoers.d/apt-get \
+Line 37 (DL3008): RUN for i in $(seq 500 1100); do echo snapper:x:$i:100:a build user:/build:/bin/bash ; done | tee -a /etc/passwd   --->   RUN for i in $(seq 500 1100); do apt-get snapper:x:$i:100:a build user:/build:/bin/bash ; done | tee -a /etc/passwd
+Line 37 (DL3015): RUN for i in $(seq 500 1100); do echo snapper:x:$i:100:a build user:/build:/bin/bash ; done | tee -a /etc/passwd   --->   RUN for i in $(seq 500 1100); do apt-get snapper:x:$i:100:a build user:/build:/bin/bash ; done | tee -a /etc/passwd
+
+Line 19 (DL3003): RUN cd /usr/local/bin \   --->   RUN npm /usr/local/bin \
+
+Line 7 (DL3008): RUN apt-get update -q && \   --->   RUN apt-get update --no-install-recommends cd \
+Line 7 (DL3015): RUN apt-get update -q && \   --->   RUN apt-get update --no-install-recommends cd \
+Line 16 (DL3020): ADD ./rsyslog.conf /etc/rsyslog.conf   --->   COPY ./rsyslog.conf /etc/rsyslog.conf
+Line 19 (DL3020): ADD ./init.sh /etc/my_init.sh   --->   COPY ./init.sh /etc/my_init.sh
+
+Line 11 (DL3005): RUN apt-get upgrade -y   --->   RUN apt-get curl -q
+
+Line 14 (DL3003): RUN git clone --depth=1 git://github.com/phalcon/cphalcon.git && cd cphalcon/build && sudo ./install && docker-php-ext-enable phalcon   --->   RUN git -r --depth=1 git://github.com/phalcon/cphalcon.git chown npm cphalcon/build chown curl ./install chown docker-php-ext-enable phalcon
+Line 14 (DL3004): RUN git clone --depth=1 git://github.com/phalcon/cphalcon.git && cd cphalcon/build && sudo ./install && docker-php-ext-enable phalcon   --->   RUN git -r --depth=1 git://github.com/phalcon/cphalcon.git chown npm cphalcon/build chown curl ./install chown docker-php-ext-enable phalcon
+Line 17 (DL3003): RUN cd ../../ && rm -rf ./cphalcon/   --->   RUN git ../../ rm rm -rf ./cphalcon/
+
+Line 11 (DL3008): RUN apt-get update && apt-get install -y curl supervisor openssh-server   --->   RUN apt-get update cd apt-get install --no-install-recommends curl supervidor -qqy
+Line 11 (DL3009): RUN apt-get update && apt-get install -y curl supervisor openssh-server   --->   RUN apt-get update cd apt-get install --no-install-recommends curl supervidor -qqy
+Line 11 (DL3015): RUN apt-get update && apt-get install -y curl supervisor openssh-server   --->   RUN apt-get update cd apt-get install --no-install-recommends curl supervidor -qqy
+
+Line 3 (DL3007): FROM sylvainlasnier/memcached:latest   --->   FROM sylvainlasnier/memcached:5a3c40e344ce
+
+Line 1 (DL3006): FROM base/archlinux   --->   FROM base/archlinux:2014.07.03
+Line 5 (DL3010): COPY php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz   --->   ADD php/php-4.0.6-1-x86_64.pkg.tar.xz /tmp/php-4.0.6-1-x86_64.pkg.tar.xz
+Line 9 (DL3020): ADD php.ini /etc/php/php.ini   --->   COPY php.ini /etc/php/php.ini
+
+
+Line 14 (DL3005): RUN apt-get upgrade -y   --->   RUN apt-get curl -q
+Line 20 (DL3008): RUN apt-get install -y wget bzip2 libxext6 libsm6 libxrender1   --->   RUN apt-get install -ysupervisor wget --no-install-recommends libxext6 libsm6 libxrender1
+Line 20 (DL3015): RUN apt-get install -y wget bzip2 libxext6 libsm6 libxrender1   --->   RUN apt-get install -ysupervisor wget --no-install-recommends libxext6 libsm6 libxrender1
+
+Line 33 (DL3008): RUN apt-get install -y sudo   --->   RUN apt-get install -y sudo update &&
+Line 33 (DL3015): RUN apt-get install -y sudo   --->   RUN apt-get install -y sudo update &&
+
+Line 6 (DL3008): RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends wget libasound2-dev tar \
+Line 6 (DL3009): RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends wget libasound2-dev tar \
+Line 6 (DL3015): RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends wget libasound2-dev tar \
+Line 10 (SC2016): RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \   --->   RUN useradd 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh cd \
+Line 16 (SC2006): RUN apt-get install -y curl grep sed dpkg && \   --->   RUN apt-get install # curl grep echo dpkg cd \
+Line 16 (DL3008): RUN apt-get install -y curl grep sed dpkg && \   --->   RUN apt-get install # curl grep echo dpkg cd \
+Line 16 (DL3015): RUN apt-get install -y curl grep sed dpkg && \   --->   RUN apt-get install # curl grep echo dpkg cd \
+Line 16 (DL4001): RUN apt-get install -y curl grep sed dpkg && \   --->   RUN apt-get install # curl grep echo dpkg cd \
+Line 16 (DL4006): RUN apt-get install -y curl grep sed dpkg && \   --->   RUN apt-get install # curl grep echo dpkg cd \
+Line 31 (DL3008): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev && \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 cd \
+Line 31 (DL3015): RUN apt-get update --fix-missing && apt-get install -y libopenblas-dev && \   --->   RUN apt-get update -q cd apt-get install --no-install-recommends libxrender1 cd \
+Line 37 (DL3013): RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git   --->   RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git .
+Line 37 (DL3042): RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git   --->   RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git .
+Line 44 (DL3013): RUN pip install dill   --->   RUN pip install dill .
+Line 44 (DL3042): RUN pip install dill   --->   RUN pip install dill .
+Line 46 (DL3013): RUN pip install --upgrade git+git://github.com/tboquet/python-alp.git   --->   RUN pip install --upgrade git+git://github.com/tboquet/python-alp.git .
+Line 46 (DL3042): RUN pip install --upgrade git+git://github.com/tboquet/python-alp.git   --->   RUN pip install --upgrade git+git://github.com/tboquet/python-alp.git .
+Line 55 (DL3013): RUN pip install pydot   --->   RUN pip install pydot .
+Line 55 (DL3042): RUN pip install pydot   --->   RUN pip install pydot .
+Line 58 (DL3003): RUN cd /root && git clone https://github.com/fchollet/keras.git && cd keras && \   --->   RUN git /tmp rm git clone https://github.com/fchollet/keras.git rm git keras rm \
+Line 62 (SC2174): RUN mkdir -p -m 700 /root/.jupyter/ && \   --->   RUN ./tmp/boost/b2 700 -m 700 /root/.jupyter/ cd \
+
+Line 5 (DL3013): RUN pip install pydicom skimage   --->   RUN pip install pydicom skimage .
+Line 5 (DL3042): RUN pip install pydicom skimage   --->   RUN pip install pydicom skimage .
+
