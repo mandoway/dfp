@@ -26,6 +26,8 @@ DEBUG_RULE_DICT = {'DL3008': 71, 'DL3009': 33, 'DL3015': 71, 'DL4000': 60, 'DL30
                    'DL3000': 2,
                    'SC2174': 2, 'SC2006': 2}
 
+OUTPUT_NAME = ""
+
 
 def plotRules(rules: dict[str, int], title: str):
     print(f"plotRules ({title}): ")
@@ -38,6 +40,7 @@ def plotRules(rules: dict[str, int], title: str):
     plt.bar(x, y)
     plt.xticks(rotation=45)
     plt.tight_layout()
+    plt.savefig(OUTPUT_NAME + "_RuleDistribution.png")
     plt.show()
     print()
 
@@ -55,8 +58,13 @@ def tablePositions(positions: dict[int, int]):
 
     total = rows[-1][1]
     x = bins + [total]
-    y = list(map(lambda it: it[1] / total, rows))
+    y = list(map(lambda it: it[1], rows))
+    plt.figure()
     plt.plot(x, y)
+    plt.title("Impact of patch limit to fixes")
+    plt.xlabel("maximum patches allowed")
+    plt.ylabel("fixes found")
+    plt.savefig(OUTPUT_NAME + "_PatchLimitImpact.png")
     plt.show()
 
     table = Texttable()
@@ -86,6 +94,7 @@ def plotTimes(total_times: list[float], times_per_v: list[float]):
 
     ax.set_xticks([1, 2])
     ax.set_xticklabels(["Total", "Per violation"])
+    plt.savefig(OUTPUT_NAME + "_ExecutionTimes.png")
     plt.show()
     print()
 
@@ -133,16 +142,20 @@ def plotRulesVsTotal(rules: dict[str, int], total: dict[str, int]):
     plt.ylabel("Fixed violations (%)")
     plt.xticks(rotation=45)
     plt.tight_layout()
+    plt.savefig(OUTPUT_NAME + "_FixRate.png")
     plt.show()
     print()
 
 
 def main():
+    global OUTPUT_NAME
+
     if len(sys.argv) < 2:
         print("Please provide a result file, e.g. results.pkl")
         return
 
     results_file = sys.argv[1]
+    OUTPUT_NAME += results_file.removesuffix(".pkl")
 
     with open(results_file, "rb") as f:
         results: list[PatchStats] = pickle.load(f)
