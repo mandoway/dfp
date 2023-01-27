@@ -9,11 +9,16 @@ The patching script will suggest patches for various lines in a given dockerfile
 This repository contains scripts to
 
 1. Generate patches based on Hadolint's violations and a large collection of Dockerfile changes in Open-Source
-   projects [MSR18 database](https://github.com/sealuzh/msr18-docker-dataset)
+   projects [MSR18 database](https://github.com/sealuzh/msr18-docker-dataset) (extended dataset can be found on [Zenodo](https://zenodo.org/record/7508293)  
    and
 2. Retrieve and apply these patches to any given Dockerfile
 
-## Getting started
+### Table of contents
+- [Getting started](#started)
+- [File structure](#file)
+- [Running DFP](#running)
+
+## <a name="started"/> Getting started
 
 There are several possibilities to get the artifact up and running:
 
@@ -73,6 +78,7 @@ Pre-requisites:
 - [Python 3.9](https://www.python.org/downloads/)
 - [PostgreSQL](https://www.postgresql.org/download/)
 
+Windows 10 was used for the local setup, if you use another OS your results may vary.
 The following uses the default user ``postgres`` with password `postgres` (can vary on different installation methods).
 If you want to use a different user, change the option ``-U <user>``.
 You will also need to change the login information in [config.ini](./config.ini) accordingly.
@@ -108,7 +114,7 @@ Trying patches for violation 0: : 82it [00:09,  8.59it/s]
 
 You can then abort the execution using ``Ctrl+C``.
 
-## File structure
+## <a name="file"/> File structure
 
 This repository contains scripts for creating patches, running ``dfp`` to apply patches and evaluating it with a test
 set.
@@ -139,7 +145,7 @@ set.
 - [/utils](./utils)
   Other utility code.
 
-## Running DFP
+## <a name="running"/> Running DFP
 
 ### Main script
 
