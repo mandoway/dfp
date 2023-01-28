@@ -14,14 +14,18 @@ This repository contains scripts to
 2. Retrieve and apply these patches to any given Dockerfile
 
 ### Table of contents
-- [Getting started](#a-namestarted-getting-started)
-- [File structure](#a-namefile-file-structure)
-- [Running DFP](#a-namerunning-running-dfp)
-- [Dataset](#a-namedataset-dataset)
+- [Getting started](#started)
+- [File structure](#file)
+- [Running DFP](#running)
+- [Dataset](#dataset)
+
+
+
+
+
+
 
 ## <a name="started"/> Getting started
-
----
 
 There are several possibilities to get the artifact up and running:
 
@@ -117,9 +121,12 @@ Trying patches for violation 0: : 82it [00:09,  8.59it/s]
 
 You can then abort the execution using ``Ctrl+C``.
 
-## <a name="file"/> File structure
 
----
+
+
+
+
+## <a name="file"/> File structure
 
 This repository contains scripts for creating patches, running ``dfp`` to apply patches and evaluating it with a test
 set.
@@ -150,9 +157,12 @@ set.
 - [/utils](./utils)
   Other utility code.
 
-## <a name="running"/> Running DFP
 
----
+
+
+
+
+## <a name="running"/> Running DFP
 
 ### Main script
 
@@ -240,9 +250,13 @@ docker cp dfp:/dfp/results/resultsWithAllPatches_RuleDistribution.png .
 docker cp dfp:/dfp/results/resultsWithAllPatches_PatchLimitImpact.png .
 ````
 
-## <a name="dataset"/> Dataset
 
----
+
+
+
+
+
+## <a name="dataset"/> Dataset
 
 The dataset used to mine the patches is extending the dataset of [Structured Information on State and Evolution of Dockerfiles](https://github.com/sealuzh/msr18-docker-dataset).  
 A description of their data schema can be found on the linked GitHub repository.  
