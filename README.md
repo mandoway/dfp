@@ -14,11 +14,14 @@ This repository contains scripts to
 2. Retrieve and apply these patches to any given Dockerfile
 
 ### Table of contents
-- [Getting started](#started)
-- [File structure](#file)
-- [Running DFP](#running)
+- [Getting started](#a-namestarted-getting-started)
+- [File structure](#a-namefile-file-structure)
+- [Running DFP](#a-namerunning-running-dfp)
+- [Dataset](#a-namedataset-dataset)
 
 ## <a name="started"/> Getting started
+
+---
 
 There are several possibilities to get the artifact up and running:
 
@@ -116,6 +119,8 @@ You can then abort the execution using ``Ctrl+C``.
 
 ## <a name="file"/> File structure
 
+---
+
 This repository contains scripts for creating patches, running ``dfp`` to apply patches and evaluating it with a test
 set.
 
@@ -146,6 +151,8 @@ set.
   Other utility code.
 
 ## <a name="running"/> Running DFP
+
+---
 
 ### Main script
 
@@ -233,3 +240,28 @@ docker cp dfp:/dfp/results/resultsWithAllPatches_RuleDistribution.png .
 docker cp dfp:/dfp/results/resultsWithAllPatches_PatchLimitImpact.png .
 ````
 
+## <a name="dataset"/> Dataset
+
+---
+
+The dataset used to mine the patches is extending the dataset of [Structured Information on State and Evolution of Dockerfiles](https://github.com/sealuzh/msr18-docker-dataset).  
+A description of their data schema can be found on the linked GitHub repository.  
+The extended dataset can be downloaded on [Zenodo](https://zenodo.org/record/7508293).  
+Similar to the patch database, the dataset is also a compressed PostgreSQL dump and can be imported with:
+```shell
+pg_restore -U postgres --dbname msr18_extended msr18_extended
+```
+The command will restore the database dump as the user ``postgres`` into a database with the name ``msr18_extended``.  
+
+Important tables of the dataset include (more detailed information of the original schema can be found [here](https://github.com/sealuzh/msr18-docker-dataset)):  
+- **Project**: A unique GitHub project/repository with at least one Dockerfile (can have multiple)
+- **Dockerfile**: A unique Dockerfile contained in a GitHub repository
+- **Snapshot**: A specific version of a Dockerfile
+
+Extensions include:
+- **Snapshot violations** (`snap_violation`): Each snapshot was analysed and the resulting violations are stored in this table
+- **Snapshot violation diffs** (`snap_viol_diff`): Changes in violations from one snapshot to another
+- **Snapshot vulnerabilities** (`snap_vuln`): Security vulnerabilities based on the security analysis (not all Dockerfiles were analysed due to time constraints)
+- **Snapshot vulnerability diffs** (`snap_vuln_diff`): Changes in vulnerabilities
+
+A SQL script to create the DB schema and a complete Entity-Relationship-Diagram can be found in [/dataset](dataset).
